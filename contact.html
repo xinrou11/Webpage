@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - NACT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(6px) opacity(0.5);
+      transition: filter 0.3s;
+    }
+    .chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      animation: bot-float 10s linear infinite alternate;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 4px 24px 0 rgba(30,41,59,0.18), 0 1.5px 8px 0 rgba(37,99,235,0.10);
+      backdrop-filter: blur(8px) saturate(1.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    @keyframes bot-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-60vh); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background video -->
+  <video class="video-bg" src="video/0_Abstract_Background_3840x2160.mp4" autoplay loop muted playsinline></video>
+  
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo-placeholder">
+        <img src="img/logo/NACT ENGINEERING (side by side)_cv.png" alt="DroneServ Logo" class="navbar-logo">
+      </div>
+      <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="product.html">Product</a>
+        <a href="service.html">Service</a>
+        <a href="technology.html">Technology</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-bg contact-hero-bg" style="min-height: 380px; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="max-width: 700px; margin: 0 auto;">
+      <h1 class="hero-title" style="font-size: 3em; font-weight: 800; margin-bottom: 0.2em;">Contact <span style="color:#38bdf8;">NACT Engineering</span></h1>
+      <p class="hero-subtitle" style="font-size: 1.25em; margin-bottom: 1.2em;">We’d love to hear from you. Reach out for product inquiries, service requests, or partnership opportunities.</p>
+      <a href="#contact-highlights" class="cta-btn">See Contact Options</a>
+    </div>
+  </section>
+  <style>
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+      color: #fff;
+      font-size: 1.15em;
+      font-weight: 700;
+      padding: 0.85em 2.2em;
+      border-radius: 32px;
+      text-decoration: none;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.13);
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5em;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+  </style>
+
+  <!-- Contact Section: Two-column layout -->
+  <section id="contact-highlights" style="background: #fafdff; padding: 3em 0 2.5em 0;">
+    <div class="contact-columns">
+      <!-- Left: Address, contact, map -->
+      <div class="contact-info-card contact-equal-card">
+        <h3 class="contact-title">Contact Details</h3>
+        <div class="contact-detail-group">
+          <div class="contact-label">Address:</div>
+          <div class="contact-value">Petro Centre, 5 Jalan Kilang Barat, #07-07<br>Singapore 159349</div>
+        </div>
+        <div class="contact-detail-group">
+          <div class="contact-label">Phone:</div>
+          <div class="contact-value"><a href="tel:+6597258562">+65 9725 8562</a></div>
+        </div>
+        <div class="contact-detail-group">
+          <div class="contact-label">Phone (US):</div>
+          <div class="contact-value"><a href="tel:+19714749172">+1 (971) 474-9172</a></div>
+        </div>
+        <div class="contact-detail-group">
+          <div class="contact-label">Email:</div>
+          <div class="contact-value"><a href="mailto:info@nactengineering.com">info@nactengineering.com</a></div>
+        </div>
+        <div class="contact-detail-group">
+          <div class="contact-label">Website:</div>
+          <div class="contact-value"><a href="https://www.nactengineering.com" target="_blank">www.nactengineering.com</a></div>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps?q=Petro+Centre,+5+Jalan+Kilang+Barat,+%2307-07,+Singapore+159349&output=embed" width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <!-- Right: Large contact form -->
+      <div class="contact-form-card contact-equal-card">
+        <h3 class="contact-title">Send Us a Message</h3>
+        <form class="contact-form-section" action="mailto:info@nactengineering.com" method="post" enctype="text/plain">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="7" required></textarea>
+          <button type="submit" style="margin-top:0.5em;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <style>
+    .contact-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5em;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+    .contact-equal-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 2.2em 1.3em 1.5em 1.3em;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .contact-title {
+      color: #2563eb;
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      text-align: left;
+      width: 100%;
+    }
+    .contact-detail-group {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.5em;
+      width: 100%;
+    }
+    .contact-label {
+      min-width: 90px;
+      font-weight: 600;
+      color: #1e293b;
+      text-align: right;
+      margin-right: 0.7em;
+    }
+    .contact-value {
+      color: #334155;
+      text-align: left;
+      flex: 1;
+      word-break: break-word;
+    }
+    .contact-map {
+      width: 100%;
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.08);
+      margin-top: 1em;
+    }
+    .contact-form-section label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3em;
+      color: #1e293b;
+    }
+    .contact-form-section input,
+    .contact-form-section textarea {
+      width: 100%;
+      padding: 0.75em;
+      margin-bottom: 1em;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    .contact-form-section input:focus,
+    .contact-form-section textarea:focus {
+      border-color: #2563eb;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+    }
+    .contact-form-section button {
+      background: #2563eb;
+      color: white;
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form-section button:hover {
+      background: #1d4ed8;
+    }
+    @media (max-width: 900px) {
+      .contact-columns {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+      }
+      .contact-equal-card {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+    .contact-form-section label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3em;
+      color: #1e293b;
+    }
+    .contact-form-section input,
+    .contact-form-section textarea {
+      width: 100%;
+      padding: 0.75em;
+      margin-bottom: 1em;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    .contact-form-section input:focus,
+    .contact-form-section textarea:focus {
+      border-color: #2563eb;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+    }
+    .contact-form-section button {
+      background: #2563eb;
+      color: white;
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form-section button:hover {
+      background: #1d4ed8;
+    }
+    @media (max-width: 900px) {
+      .contact-columns {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+      }
+      .contact-info-card, .contact-form-card {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+  </style>
+  <style>
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.2em;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: 0.5em;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 2.2em 1.3em 1.5em 1.3em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 6px 32px rgba(30,41,59,0.13);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.1em;
+      object-fit: contain;
+    }
+    .feature-card h3 {
+      color: #2563eb;
+      font-size: 1.25em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+    .feature-card p {
+      color: #334155;
+      font-size: 1.05em;
+      margin-bottom: 0;
+    }
+  </style>
+
+  <!-- Floating AI Bot Chat Bubble -->
+  <div id="chat-bubble" class="chat-bubble" onclick="toggleChatBox()">
+    <img src="img/drone_icon.png" alt="Chat Bot" style="width: 40px; height: 40px; object-fit: contain; background: none; border: none; box-shadow: none;" />
+  </div>
+
+  <!-- Floating chat -->
+  <div id="floating-chat" class="floating-chat" style="display:none;">
+    <div class="chat-header">
+      <span>AI Drone Assistant</span>
+      <button class="close-chat" onclick="toggleChatBox()">&times;</button>
+    </div>
+    <div id="chat-box">
+      <div id="chat-log"></div>
+      <input type="text" id="user-input" placeholder="Ask the AI bot about contacting us...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Inline CSS for contact page -->
+  <style>
+    /* Contact page layout */
+    .contact-flex {
+      display: flex;
+      gap: 2em;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+    .contact-flex .page-section {
+      flex: 1 1 0;
+      min-width: 280px;
+      max-width: 500px;
+      margin: 0;
+    }
+    @media (max-width: 1100px) {
+      .contact-flex {
+        flex-direction: column;
+        gap: 1.5em;
+      }
+      .contact-flex .page-section {
+        max-width: 100%;
+      }
+    }
+
+    /* Hero section */
+    .hero-bg {
+      width: 1400px;
+      max-width: 1400px;
+      height: 300px;
+      background-size: cover;
+      background-position: center center;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(30,41,59,0.10);
+    }
+    .contact-hero-bg {
+      background-image: url('contact-hero.jpg');
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30,41,59,0.45);
+      filter: blur(12px) brightness(0.7) opacity(0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+    .hero-title {
+      color: #fff;
+      font-size: 2.7em;
+      margin-top: 0;
+      margin-bottom: 0.3em;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 16px #1e293b;
+    }
+    .hero-subtitle {
+      color: #e0e7ef;
+      font-size: 1.25em;
+      text-shadow: 0 1px 8px #1e293b;
+      margin-bottom: 0;
+    }
+
+    /* Main content */
+    .page-main {
+      max-width: 900px;
+      margin: 2.5em auto 2em auto;
+      padding: 0 1.5em;
+    }
+    .page-section {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 2em;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.08);
+      max-width: 600px;
+      margin: 2em auto;
+    }
+    .page-section h2 {
+      margin-top: 0;
+      color: #2563eb;
+      font-size: 1.6em;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+    .contact-form-section label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3em;
+      color: #1e293b;
+    }
+    .contact-form-section input,
+    .contact-form-section textarea {
+      width: 100%;
+      padding: 0.75em;
+      margin-bottom: 1em;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    .contact-form-section input:focus,
+    .contact-form-section textarea:focus {
+      border-color: #2563eb;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+    }
+    .contact-form-section button {
+      background: #2563eb;
+      color: white;
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form-section button:hover {
+      background: #1d4ed8;
+    }
+  </style>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Hamburger nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburger-menu');
+      var navLinks = document.getElementById('navLinks');
+      if (hamburger) {
+        hamburger.addEventListener('click', function () {
+          navLinks.classList.toggle('open');
+          var expanded = hamburger.getAttribute('aria-expanded') === 'true';
+          hamburger.setAttribute('aria-expanded', !expanded);
+        });
+      }
+    });
+
+    // Chat toggle
+    function toggleChatBox() {
+      var chat = document.getElementById('floating-chat');
+      var bubble = document.getElementById('chat-bubble');
+      if (chat.style.display === 'none' || chat.style.display === '') {
+        chat.style.display = 'block'; 
+        bubble.style.display = 'none';
+        setTimeout(function(){ document.getElementById('user-input').focus(); }, 100);
+      } else {
+        chat.style.display = 'none'; 
+        bubble.style.display = 'flex';
+      }
+    }
+  </script>
+</body>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
+          <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
+      </div>
+      <div class="footer-center">
+        <span style="display:flex;align-items:center;gap:0.5em;">
+          <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 2C5.03 2 1 6.03 1 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16.2A7.2 7.2 0 0 1 2.8 11c0-1.61.52-3.1 1.4-4.3l9.1 9.1A7.18 7.18 0 0 1 10 18.2zm5.8-2.1-9.1-9.1A7.18 7.18 0 0 1 10 3.8c3.97 0 7.2 3.23 7.2 7.2 0 1.61-.52 3.1-1.4 4.3z" fill="#2563eb"/></svg>
+          <a href="https://nactengineering.com" target="_blank" style="color:#38bdf8;font-weight:500;">www.nactengineering.com</a>
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">Singapore | info@nactengineering.com</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/></svg>
+        </a>
+        <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#38bdf8"/><path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</html>

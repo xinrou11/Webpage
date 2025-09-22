@@ -1,0 +1,528 @@
+/* ===========================
+   Hamburger styles
+=========================== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 4px;
+  margin: 4px 0;
+  background: #2563eb;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 0;
+    width: 200px;
+    box-shadow: 0 4px 24px rgba(30,41,59,0.10);
+    border-radius: 0 0 12px 12px;
+    padding: 0.5em 0;
+    z-index: 1002;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links a {
+    padding: 1em 1.5em;
+    border-bottom: 1px solid #f1f1f1;
+    color: #0a0a23;
+    font-size: 1.1em;
+    text-align: left;
+  }
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+  .nav-container {
+    position: relative;
+  }
+}
+
+/* ===========================
+   Chat Bot Bubble (Shared)
+=========================== */
+.chat-bubble {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: #0073e6;
+  color: #fff;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background 0.2s;
+  z-index: 1001;
+}
+.chat-bubble:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(255,255,255,0.32);
+}
+.flying-drone-icon {
+  animation: flyUpDown 1.6s ease-in-out infinite alternate;
+}
+@keyframes flyUpDown {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+/* Max out logo in navbar */
+.logo-placeholder {
+  height: 80px;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.navbar-logo {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.nav-container {
+  align-items: stretch;
+}
+
+/* ===========================
+   Contact page flex
+=========================== */
+.contact-flex {
+  display: flex;
+  gap: 2em;
+  align-items: stretch;
+}
+.contact-flex .page-section {
+  flex: 1 1 0;
+  min-width: 320px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+.contact-flex .page-section .contact-form-section {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 1100px) {
+  .contact-flex {
+    flex-direction: column;
+    gap: 1.5em;
+  }
+  .contact-flex .page-section {
+    min-width: 0;
+  }
+}
+
+/* ===========================
+   Base
+=========================== */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  color: #0a0a23;
+  margin-top: 0;
+}
+
+a {
+  color: #0073e6;
+  text-decoration: none;
+  transition: 0.2s;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Navbar
+=========================== */
+nav {
+  background: #ffffff;
+  color: #0a0a23;
+  padding: 3px 20px;
+  position: sticky;
+  max-width: 1800px;
+  z-index: 1000;
+  border-bottom: 1px solid #eee;
+  transition: padding 0.25s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: #0a0a23;
+  font-weight: 600;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: #0073e6;
+}
+nav.shrink {
+  padding: 8px 20px;
+}
+.nav-links a.active {
+  color: #0073e6;
+  border-bottom: 2px solid #0073e6;
+  padding-bottom: 4px;
+}
+
+/* ===========================
+   Hero section
+=========================== */
+.hero-bg {
+  width: 100%;
+  max-width: 1800px;
+  height: 340px;
+  margin: 0 auto 2em auto;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  background: transparent;
+  background-size: cover;
+  background-position: center;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(9,22,90,0.5);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1em;
+}
+.hero-title {
+  font-size: 2.8rem;
+  color: #fff;
+  margin-bottom: 0.4em;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+}
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #e2e8f0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Sections
+=========================== */
+section {
+  padding: 60px 20px;
+  max-width: 1800px;
+  margin: 0 auto;
+  text-align: center;
+}
+section:nth-of-type(even) {
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+section h2 {
+  font-size: 1.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #555;
+  margin-bottom: 1em;
+}
+section a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.18);
+  color: #0073e6;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+section a:hover {
+  background: #005bb5;
+}
+
+/* ===========================
+   Cards & Responsive Grids
+=========================== */
+.card-grid, .about-cards, .service-grid, .product-gallery, .about-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+  width: 100%;
+  justify-items: center;
+}
+.card, .about-card, .service-card, .product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 32px 28px;
+  min-width: 220px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.card:hover, .about-card:hover, .service-card:hover, .product-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.card h2, .about-card-title, .service-card-title, .product-card-title {
+  color: #0a0a23;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 0.6em;
+}
+.card p, .about-card-text, .service-card-text, .product-card-text {
+  color: #555;
+  font-size: 1em;
+}
+@media (max-width: 1200px) {
+  .card-grid, .about-cards, .service-grid, .product-gallery, .about-row {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2em;
+  }
+}
+@media (max-width: 700px) {
+  .card-grid, .about-cards, .service-grid, .product-gallery, .about-row {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+  .card, .about-card, .service-card, .product-card {
+    width: 95vw;
+    max-width: 340px;
+    min-width: 0;
+    padding: 20px 10px;
+  }
+}
+
+/* ===========================
+   Contact Form
+=========================== */
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+form button {
+  background: #0073e6;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+form button:hover {
+  background: #005bb5;
+}
+
+/* ===========================
+   Footer
+=========================== */
+footer {
+  background: #09165a;
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
+}
+footer a {
+  color: #4da3ff;
+}
+footer p, footer span {
+  margin: 5px 0;
+  display: block;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-left {
+  text-align: left;
+}
+.footer-right {
+  display: flex;
+  gap: 1.2em;
+  align-items: center;
+}
+.footer-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: #4da3ff;
+  transition: color 0.2s;
+}
+.footer-icon:hover svg {
+  color: #2563eb;
+}
+@media (max-width: 700px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+  }
+  .footer-right {
+    justify-content: flex-start;
+  }
+}
+
+/* ===========================
+   Floating Chat Window
+=========================== */
+.floating-chat {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.chat-header {
+  background: rgba(255,255,255,0.95);
+  color: #0073e6;
+  padding: 10px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-header button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+#chat-box {
+  padding: 1em;
+}
+#chat-log {
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: 0.8em;
+  font-size: 0.9em;
+}
+
+/* Neon yellow for bot replies */
+.chat-bot-reply {
+  background: none;
+  color: #fff700;
+  font-weight: 600;
+  text-shadow: 0 0 6px #fff700, 0 0 2px #fff700;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0.3em 0 0.3em 1.5em;
+  display: inline;
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes neon-glow {
+  0% { box-shadow: 0 0 0px #fffbe6; }
+  50% { box-shadow: 0 0 12px #fff9b2, 0 0 24px #fffbe6; }
+  100% { box-shadow: 0 2px 8px rgba(255, 255, 0, 0.12); }
+}
+
+#chat-box input {
+  width: 70%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+#chat-box button {
+  padding: 0.5em 0.9em;
+  margin-left: 0.5em;
+  background: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#chat-box button:hover {
+  background: #005bb5;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  section {
+    padding: 40px 15px;
+  }
+}

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technology - NACT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(6px) opacity(0.5);
+      transition: filter 0.3s;
+    }
+  </style>
+  <style>
+    .chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      animation: bot-float 10s linear infinite alternate;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 4px 24px 0 rgba(30,41,59,0.18), 0 1.5px 8px 0 rgba(37,99,235,0.10);
+      backdrop-filter: blur(8px) saturate(1.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    @keyframes bot-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-60vh); }
+    }
+  </style>
+</head>
+<body>
+  <video class="video-bg" src="video/0_Abstract_Background_3840x2160.mp4" autoplay loop muted playsinline></video>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo-placeholder">
+  <img src="img/logo/NACT ENGINEERING (side by side)_cv.png" alt="DroneServ Logo" class="navbar-logo">
+      </div>
+      <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="product.html">Product</a>
+        <a href="service.html">Service</a>
+        <a href="technology.html" class="active">Technology</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-bg technology-hero-bg" style="min-height: 380px; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="max-width: 700px; margin: 0 auto;">
+      <h1 class="hero-title" style="font-size: 3em; font-weight: 800; margin-bottom: 0.2em;">Our <span style="color:#38bdf8;">Technology</span></h1>
+      <p class="hero-subtitle" style="font-size: 1.25em; margin-bottom: 1.2em;">Next-generation drone systems with advanced tethering, AI, dual imaging, and military-grade ruggedness.</p>
+      <a href="#tech-highlights" class="cta-btn">See Technology Highlights</a>
+    </div>
+  </section>
+  <style>
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+      color: #fff;
+      font-size: 1.15em;
+      font-weight: 700;
+      padding: 0.85em 2.2em;
+      border-radius: 32px;
+      text-decoration: none;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.13);
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5em;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+  </style>
+
+  <!-- Technology Highlights Section -->
+  <section id="tech-highlights" style="background: #fafdff; padding: 3em 0 2.5em 0;">
+    <div class="tech-carousel-wrapper">
+      <button class="carousel-btn left" aria-label="Scroll left" onclick="scrollTechCarousel(-1)">&lt;</button>
+      <div class="tech-carousel" id="tech-carousel">
+        <div class="feature-card">
+          <span class="feature-icon" aria-label="AI Integration" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#e0f2fe;border-radius:50%;margin-bottom:1.1em;">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="19" cy="19" r="18" stroke="#2563eb" stroke-width="2.5" fill="#fff"/>
+              <path d="M12 19c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7-7-3.1-7-7zm7-4a4 4 0 100 8 4 4 0 000-8z" fill="#38bdf8"/>
+              <circle cx="19" cy="19" r="2" fill="#2563eb"/>
+            </svg>
+          </span>
+          <h3>AI Integration</h3>
+          <button class="point-btn" onclick="showPointModal('Defect detection: cracks as small as 2mm', 'Detects even the smallest cracks for early maintenance.', 'video/ai-crack-detection.mp4')">Defect detection: cracks as small as 2mm</button>
+          <button class="point-btn" onclick="showPointModal('Automatic human & vehicle recognition', 'AI recognizes and tracks humans and vehicles in real time.', 'video/ai-human-vehicle.mp4')">Automatic human & vehicle recognition</button>
+          <button class="point-btn" onclick="showPointModal('Location annotation for inspections', 'Easily annotate and record inspection locations for reporting.', 'video/ai-location-annotation.mp4')">Location annotation for inspections</button>
+          <button class="point-btn" onclick="showPointModal('AI-powered facade reports with severity ratings', 'Generates detailed facade reports with severity scoring.', 'video/ai-facade-report.mp4')">AI-powered facade reports with severity ratings</button>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon" aria-label="3D Modelling" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#fef9c3;border-radius:50%;margin-bottom:1.1em;">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="7" y="13" width="24" height="12" rx="6" fill="#ffae32" stroke="#1c3f75" stroke-width="2.5"/>
+              <rect x="13" y="17" width="12" height="4" rx="2" fill="#fff"/>
+            </svg>
+          </span>
+          <h3>3D Inspection & Facade Modelling</h3>
+          <button class="point-btn" onclick="showPointModal('3D facade models', 'Creates detailed 3D models for precise analysis.', 'video/3d-modelling.mp4')">3D facade models</button>
+          <button class="point-btn" onclick="showPointModal('Damage annotation', 'Annotate and highlight damage areas for repair planning.', 'video/3d-damage-annotation.mp4')">Damage annotation</button>
+          <button class="point-btn" onclick="showPointModal('Severity scoring', 'Assigns severity scores to each detected issue.', 'video/3d-severity.mp4')">Severity scoring</button>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon" aria-label="Dual Imaging" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#f1f5f9;border-radius:50%;margin-bottom:1.1em;">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="19" cy="19" r="14" fill="#2563eb"/>
+              <circle cx="19" cy="19" r="8" fill="#fff"/>
+              <circle cx="19" cy="19" r="4" fill="#38bdf8"/>
+            </svg>
+          </span>
+          <h3>Dual Imaging Technology</h3>
+          <button class="point-btn" onclick="showPointModal('EO + IR thermal cameras', 'Combines EO and IR for comprehensive inspection.', 'video/dual-eo-ir.mp4')">EO + IR thermal cameras</button>
+          <button class="point-btn" onclick="showPointModal('Real-time monitoring', 'Monitor inspections in real time for immediate feedback.', 'video/dual-realtime.mp4')">Real-time monitoring</button>
+          <button class="point-btn" onclick="showPointModal('Adjustable angle viewing with audio command', 'Adjust camera angles hands-free using audio commands.', 'video/dual-audio-angle.mp4')">Adjustable angle viewing with audio command</button>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon" aria-label="High-Speed Comms" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#f3e8ff;border-radius:50%;margin-bottom:1.1em;">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="16" width="22" height="6" rx="3" fill="#a78bfa"/>
+              <rect x="14" y="19" width="10" height="2" rx="1" fill="#fff"/>
+              <rect x="17" y="13" width="4" height="2" rx="1" fill="#1c3f75"/>
+            </svg>
+          </span>
+          <h3>Unjammable, High-Speed Communications</h3>
+          <button class="point-btn" onclick="showPointModal('Secure tethered ethernet up to 10Gbps', 'High-speed, secure data transfer for critical missions.', 'video/comms-ethernet.mp4')">Secure tethered ethernet up to 10Gbps</button>
+          <button class="point-btn" onclick="showPointModal('Immune to jamming for high-security ops', 'Operates reliably even in hostile environments.', 'video/comms-jamming.mp4')">Immune to jamming for high-security ops</button>
+          <button class="point-btn" onclick="showPointModal('Supports BVLOS & GPS-denied environments', 'Maintains connection in challenging conditions.', 'video/comms-bvlos.mp4')">Supports BVLOS & GPS-denied environments</button>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon" aria-label="Military Grade" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#fee2e2;border-radius:50%;margin-bottom:1.1em;">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="14" width="18" height="10" rx="5" fill="#ef4444"/>
+              <rect x="16" y="18" width="6" height="2" rx="1" fill="#fff"/>
+              <rect x="18" y="12" width="2" height="4" rx="1" fill="#1c3f75"/>
+            </svg>
+          </span>
+          <h3>Military-Grade Ruggedness</h3>
+          <button class="point-btn" onclick="showPointModal('MIL-STD 810G/461', 'Built to military standards for maximum reliability.', 'video/mil-std.mp4')">MIL-STD 810G/461</button>
+          <button class="point-btn" onclick="showPointModal('Fast deployment', 'Deploys quickly for urgent missions.', 'video/mil-fast-deploy.mp4')">Fast deployment</button>
+          <button class="point-btn" onclick="showPointModal('Maximum durability and safety', 'Designed for long-term use in harsh conditions.', 'video/mil-durability.mp4')">Maximum durability and safety</button>
+        </div>
+      </div>
+      <button class="carousel-btn right" aria-label="Scroll right" onclick="scrollTechCarousel(1)">&gt;</button>
+    </div>
+  </section>
+  <style>
+    .tech-carousel-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      position: relative;
+      margin-bottom: 2em;
+    }
+    .tech-carousel {
+      display: flex;
+      gap: 2.2em;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 0.5em;
+      scrollbar-width: thin;
+      scrollbar-color: #2563eb #e0e7ef;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+    .tech-carousel::-webkit-scrollbar {
+      height: 10px;
+    }
+    .tech-carousel::-webkit-scrollbar-thumb {
+      background: #2563eb;
+      border-radius: 6px;
+    }
+    .tech-carousel::-webkit-scrollbar-track {
+      background: #e0e7ef;
+      border-radius: 6px;
+    }
+    .carousel-btn {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 2.5em;
+      height: 2.5em;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.10);
+      transition: background 0.18s, box-shadow 0.18s, transform 0.15s;
+      z-index: 2;
+      position: relative;
+    }
+    .carousel-btn:hover {
+      background: #1e40af;
+      transform: scale(1.08);
+    }
+    .carousel-btn.left {
+      margin-right: 0.5em;
+    }
+    .carousel-btn.right {
+      margin-left: 0.5em;
+    }
+    .tech-carousel .feature-card {
+      min-width: 280px;
+      max-width: 340px;
+      flex: 0 0 320px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 2.2em 1.3em 1.5em 1.3em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .tech-carousel .feature-card .point-btn {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      margin: 0.4em 0;
+      padding: 0.7em 1em;
+      background: #f1f5f9;
+      color: #1c3f75;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.15s;
+      box-shadow: 0 1px 4px rgba(30,41,59,0.07);
+      outline: none;
+      position: relative;
+      box-sizing: border-box;
+      line-height: 1.2;
+      white-space: normal;
+    }
+    .tech-carousel .feature-card .point-btn:hover, .tech-carousel .feature-card .point-btn:focus {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.13);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .tech-carousel .feature-card .point-btn:not(:last-child) {
+      margin-bottom: 0.5em;
+    }
+    .tech-carousel .feature-card h3 {
+      margin-bottom: 1em;
+    }
+    @media (max-width: 700px) {
+      .tech-carousel .feature-card {
+        min-width: 220px;
+        max-width: 90vw;
+        flex: 0 0 80vw;
+      }
+    }
+  </style>
+  <script>
+    function scrollTechCarousel(direction) {
+      const carousel = document.getElementById('tech-carousel');
+      const card = carousel.querySelector('.feature-card');
+      if (!card) return;
+      const cardWidth = card.offsetWidth + 22; // gap
+      carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+    }
+    // Drag to scroll
+    (function() {
+      const carousel = document.getElementById('tech-carousel');
+      let isDown = false, startX, scrollLeft;
+      if (!carousel) return;
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.classList.add('dragging');
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      });
+      carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.classList.remove('dragging');
+      });
+      carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.classList.remove('dragging');
+      });
+      carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        carousel.scrollLeft = scrollLeft - walk;
+      });
+      // Touch events
+      carousel.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      });
+      carousel.addEventListener('touchend', () => {
+        isDown = false;
+      });
+      carousel.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        carousel.scrollLeft = scrollLeft - walk;
+      });
+    })();
+  </script>
+
+  <!-- Floating AI Bot Chat Bubble -->
+  <div id="chat-bubble" class="chat-bubble" onclick="toggleChatBox()">
+    <img src="img/drone_icon.png" alt="Chat Bot" style="width: 40px; height: 40px; object-fit: contain; background: none; border: none; box-shadow: none;" />
+  </div>
+<style>
+/* Hero background section for all pages */
+.hero-bg {
+  width: 1400px;
+  max-width: 1400px;
+  height: 300px;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(30,41,59,0.10);
+}
+.technology-hero-bg {
+  background-image: url('technology-hero.jpg');
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30,41,59,0.45);
+  filter: blur(12px) brightness(0.7) opacity(0.6);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
+.hero-title {
+  color: #fff;
+  font-size: 2.7em;
+  margin-top: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 16px #1e293b;
+}
+.hero-subtitle {
+  color: #e0e7ef;
+  font-size: 1.25em;
+  text-shadow: 0 1px 8px #1e293b;
+  margin-bottom: 0;
+}
+.page-main {
+  max-width: 900px;
+  margin: 2.5em auto 2em auto;
+  padding: 0 1.5em;
+}
+.page-title {
+  color: #2563eb;
+  font-size: 2.2em;
+  margin-top: 0;
+  margin-bottom: 0.7em;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.page-section {
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(30,41,59,0.06);
+  padding: 1.5em 1.5em 1.2em 1.5em;
+  margin: 2em 0 0 0;
+  font-size: 1.08em;
+  color: #334155;
+}
+.flying-drone-icon {
+  display: inline-block;
+  animation: flyUpDown 1.6s ease-in-out infinite alternate;
+}
+@keyframes flyUpDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-16%); }
+}
+</style>
+  <div id="floating-chat" class="floating-chat" style="display:none;">
+    <div class="chat-header">
+      <span>AI Drone Assistant</span>
+      <button class="close-chat" onclick="toggleChatBox()">&times;</button>
+    </div>
+    <div id="chat-box">
+      <div id="chat-log"></div>
+      <input type="text" id="user-input" placeholder="Ask the AI bot about our technology...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Modal for Technology Details -->
+<div id="pointModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closePointModal()">&times;</span>
+    <h2 id="pointModalTitle"></h2>
+    <video id="pointModalVideo" controls style="width:100%;max-width:400px;margin-bottom:1em;display:none;"></video>
+    <p id="pointModalDesc"></p>
+  </div>
+</div>
+<style>
+.modal {
+  position: fixed;
+  z-index: 10001;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(30,41,59,0.55);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 14px;
+  padding: 2em 1.5em 1.5em 1.5em;
+  max-width: 480px;
+  width: 95vw;
+  box-shadow: 0 8px 32px rgba(30,41,59,0.18);
+  position: relative;
+  text-align: left;
+}
+.close-modal {
+  position: absolute;
+  top: 12px; right: 18px;
+  font-size: 2em;
+  color: #1c3f75;
+  cursor: pointer;
+  font-weight: bold;
+}
+@media (max-width: 600px) {
+  .modal-content { padding: 1.2em 0.7em; }
+}
+.point-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  width: 100%;
+  margin: 0.4em 0;
+  padding: 0.7em 1.1em;
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.04em;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(30,41,59,0.10);
+  transition: background 0.18s, box-shadow 0.18s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.point-btn:hover, .point-btn:focus {
+  background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+  box-shadow: 0 4px 16px rgba(30,41,59,0.13);
+  transform: translateY(-2px) scale(1.03);
+  outline: none;
+}
+.point-btn::before {
+  content: '\25B6'; /* play icon */
+  color: #ffae32;
+  font-size: 1.1em;
+  margin-right: 0.7em;
+  flex-shrink: 0;
+}
+.point-btn:active {
+  transform: scale(0.98);
+}
+</style>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Hamburger nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open');
+      });
+    });
+
+    // Hamburger nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburger-menu');
+      var navLinks = document.getElementById('navLinks');
+      if (hamburger) {
+        hamburger.addEventListener('click', function () {
+          navLinks.classList.toggle('open');
+          var expanded = hamburger.getAttribute('aria-expanded') === 'true';
+          hamburger.setAttribute('aria-expanded', !expanded);
+        });
+      }
+    });
+
+    // Chat toggle
+    function toggleChatBox() {
+      var chat = document.getElementById('floating-chat');
+      var bubble = document.getElementById('chat-bubble');
+      if (chat.style.display === 'none' || chat.style.display === '') {
+        chat.style.display = 'block'; bubble.style.display = 'none';
+        setTimeout(function(){ document.getElementById('user-input').focus(); }, 100);
+      } else {
+        chat.style.display = 'none'; bubble.style.display = 'flex';
+      }
+    }
+
+    function showPointModal(title, desc, video) {
+  document.getElementById('pointModalTitle').textContent = title;
+  document.getElementById('pointModalDesc').textContent = desc;
+  var vid = document.getElementById('pointModalVideo');
+  if (video) {
+    vid.src = video;
+    vid.style.display = 'block';
+  } else {
+    vid.style.display = 'none';
+  }
+  document.getElementById('pointModal').style.display = 'flex';
+}
+function closePointModal() {
+  document.getElementById('pointModal').style.display = 'none';
+  document.getElementById('pointModalVideo').pause();
+}
+  </script>
+</body>
+
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
+          <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
+      </div>
+      <div class="footer-center">
+        <span style="display:flex;align-items:center;gap:0.5em;">
+          <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 2C5.03 2 1 6.03 1 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16.2A7.2 7.2 0 0 1 2.8 11c0-1.61.52-3.1 1.4-4.3l9.1 9.1A7.18 7.18 0 0 1 10 18.2zm5.8-2.1-9.1-9.1A7.18 7.18 0 0 1 10 3.8c3.97 0 7.2 3.23 7.2 7.2 0 1.61-.52 3.1-1.4 4.3z" fill="#2563eb"/></svg>
+          <a href="https://nactengineering.com" target="_blank" style="color:#38bdf8;font-weight:500;">www.nactengineering.com</a>
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">Singapore | info@nactengineering.com</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/></svg>
+        </a>
+        <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#38bdf8"/><path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</html>

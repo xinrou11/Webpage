@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - DroneServ</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Background video styling -->
+  <style>
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(6px) opacity(0.5);
+      transition: filter 0.3s;
+    }
+    .hero-bg {
+      width: 1400px;
+      max-width: 1400px;
+      height: 300px;
+      background-size: cover;
+      background-position: center center;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(30,41,59,0.10);
+    }
+    .technology-hero-bg {
+      background-image: url('technology-hero.jpg');
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30,41,59,0.45);
+      filter: blur(12px) brightness(0.7) opacity(0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+    .hero-title {
+      color: #fff;
+      font-size: 2.7em;
+      margin-top: 0;
+      margin-bottom: 0.3em;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 16px #1e293b;
+    }
+    .hero-subtitle {
+      color: #e0e7ef;
+      font-size: 1.25em;
+      text-shadow: 0 1px 8px #1e293b;
+      margin-bottom: 0;
+    }
+
+    /* Floating chat bubble */
+    .chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      animation: bot-float 10s linear infinite alternate;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 4px 24px rgba(30,41,59,0.18),
+                  0 1.5px 8px rgba(37,99,235,0.10);
+      backdrop-filter: blur(8px) saturate(1.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: box-shadow 0.2s, background 0.2s;
+      z-index: 9999;
+    }
+    @keyframes bot-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-60vh); }
+    }
+
+    /* Horizontal Timeline */
+    .timeline-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0.8em;
+      margin: 2.5em 0;
+      position: relative;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .timeline-step {
+      background: #e0e7ef;
+      border-radius: 10px;
+      padding: 1em;
+      flex: 1;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 1px 4px rgba(30,41,59,0.07);
+      z-index: 1;
+    }
+    .timeline-bar::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    @media (max-width: 900px) {
+      .timeline-bar {
+        flex-direction: column;
+        gap: 1.2em;
+      }
+      .timeline-bar::before {
+        display: none;
+      }
+    }
+    .timeline-label {
+      color: #2563eb;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .timeline-desc {
+      color: #334155;
+      font-size: 0.95em;
+    }
+
+    /* Inspection buttons */
+    .inspection-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7em;
+      margin-top: 1.2em;
+      margin-bottom: 1.2em;
+      justify-content: center;
+    }
+    .inspection-btn {
+      padding: 0.7em 0;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1em;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.08);
+      min-width: 320px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+    .inspection-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Chat Box */
+    #floating-chat {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 10000;
+    }
+    .chat-header {
+      background: #2563eb;
+      color: #fff;
+      padding: 0.8em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header .close-chat {
+      background: transparent;
+      border: none;
+      font-size: 1.3em;
+      cursor: pointer;
+      color: #fff;
+    }
+    #chat-box {
+      display: flex;
+      flex-direction: column;
+      padding: 0.8em;
+    }
+    #chat-log {
+      flex: 1;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 0.9em;
+      margin-bottom: 0.6em;
+    }
+    #user-input {
+      flex: 1;
+      padding: 0.6em;
+      border: 2px solid #2563eb;
+      border-radius: 8px;
+      outline: none;
+      font-size: 0.9em;
+    }
+    .chat-send-btn {
+      margin-top: 0.5em;
+      padding: 0.6em;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .chat-send-btn:hover {
+      background: #1e40af;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video -->
+  <video class="video-bg" src="video/0_Abstract_Background_3840x2160.mp4" autoplay loop muted playsinline></video>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo-placeholder">
+        <img src="img/logo/NACT ENGINEERING (side by side)_cv.png" alt="DroneServ Logo" class="navbar-logo">
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="product.html">Product</a>
+        <a href="service.html" class="active">Service</a>
+        <a href="technology.html">Technology</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg" style="min-height: 380px; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="max-width: 700px; margin: 0 auto;">
+      <h1 class="hero-title" style="font-size: 3em; font-weight: 800; margin-bottom: 0.2em;">Our <span style="color:#38bdf8;">Services</span></h1>
+      <p class="hero-subtitle" style="font-size: 1.25em; margin-bottom: 1.2em;">Advanced drone inspection, monitoring, and operational services—customized for your industry and needs.</p>
+      <a href="#service-highlights" class="cta-btn">See Service Highlights</a>
+    </div>
+  </section>
+  <style>
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+      color: #fff;
+      font-size: 1.15em;
+      font-weight: 700;
+      padding: 0.85em 2.2em;
+      border-radius: 32px;
+      text-decoration: none;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.13);
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5em;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+  </style>
+
+  <!-- Service Highlights Section -->
+  <section id="service-highlights" style="background: #fafdff; padding: 3em 0 2.5em 0;">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon" aria-label="Inspection" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#e0f2fe;border-radius:50%;margin-bottom:1.1em;">
+          <!-- Magnifying glass for Inspection -->
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="17" cy="17" r="9" stroke="#2563eb" stroke-width="2.5" fill="#fff"/>
+            <rect x="24.5" y="24.5" width="7" height="2.5" rx="1.25" transform="rotate(45 24.5 24.5)" fill="#38bdf8"/>
+            <circle cx="17" cy="17" r="4" fill="#38bdf8"/>
+          </svg>
+        </span>
+        <h3>Inspection Services</h3>
+        <ul style="text-align:left; margin:1em auto 0 auto; max-width:260px; color:#334155;">
+          <li>Building & Bridge Inspection</li>
+          <li>Construction & Confined Space</li>
+          <li>Oil & Gas Facility Monitoring</li>
+          <li>Aircraft / Asset Inspection</li>
+          <li>Coastal & Security Surveillance</li>
+          <li>3D Modelling & Facade Analysis</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-label="Key Features" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#fef9c3;border-radius:50%;margin-bottom:1.1em;">
+          <!-- Gear for Key Features -->
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="19" cy="19" r="8" fill="#ffae32" stroke="#1c3f75" stroke-width="2.5"/>
+            <path d="M19 7v4M19 27v4M7 19h4M27 19h4M11.22 11.22l2.83 2.83M23.95 23.95l2.83 2.83M11.22 26.78l2.83-2.83M23.95 14.05l2.83-2.83" stroke="#1c3f75" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h3>Key Features</h3>
+        <ul style="text-align:left; margin:1em auto 0 auto; max-width:260px; color:#334155;">
+          <li>Operate drones tethered or BVLOS</li>
+          <li>Remote control & monitoring via Smart Tethers Web</li>
+          <li>Dual-view Thermal & EO cameras</li>
+          <li>AI defect detection (cracks as small as 2mm)</li>
+          <li>3D inspection annotation & facade modelling</li>
+          <li>Corrective action reports with severity ratings</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-label="Benefits" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#f1f5f9;border-radius:50%;margin-bottom:1.1em;">
+          <!-- Upward arrow/graph for Benefits -->
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="24" width="4" height="6" rx="2" fill="#2563eb"/>
+            <rect x="16" y="18" width="4" height="12" rx="2" fill="#38bdf8"/>
+            <rect x="24" y="12" width="4" height="18" rx="2" fill="#ffae32"/>
+            <path d="M8 24L18 18L28 12" stroke="#1c3f75" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="28" cy="12" r="2" fill="#ffae32" stroke="#1c3f75" stroke-width="1.5"/>
+          </svg>
+        </span>
+        <h3>Benefits</h3>
+        <ul style="text-align:left; margin:1em auto 0 auto; max-width:260px; color:#334155;">
+          <li>Boost efficiency & reduce manpower needs</li>
+          <li>Operate from the safety of your office</li>
+          <li>Compatible with OEM drones (DJI, Parrot, Skydio, etc.)</li>
+          <li>Unjammable, secure data communications</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <style>
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.2em;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: 0.5em;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 2.2em 1.3em 1.5em 1.3em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 6px 32px rgba(30,41,59,0.13);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.1em;
+      object-fit: contain;
+    }
+    .feature-card h3 {
+      color: #2563eb;
+      font-size: 1.25em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+    .feature-card p {
+      color: #334155;
+      font-size: 1.05em;
+      margin-bottom: 0;
+    }
+  </style>
+  <!-- Main Content -->
+  <main class="page-main">
+
+    <!-- Horizontal Timeline -->
+    <section class="page-section">
+      <h2>How It Works</h2>
+      <div class="timeline-bar">
+        <div class="timeline-step">
+          <span class="timeline-label">Identify</span>
+          <span class="timeline-desc">Define inspection requirements (bridge, building, asset).</span>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-label">Plan</span>
+          <span class="timeline-desc">Choose the right drone & tools (3D model, IR imaging, tethered or BVLOS).</span>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-label">Proposal</span>
+          <span class="timeline-desc">We prepare a transparent plan with timelines and deliverables.</span>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-label">Launch</span>
+          <span class="timeline-desc">Drone flight begins, streamed live via Smart Tethers Web.</span>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-label">Evaluate</span>
+          <span class="timeline-desc">Data analyzed with AI, facade reports and 3D models generated.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating AI Bot Chat Bubble -->
+  <div id="chat-bubble" class="chat-bubble" onclick="toggleChatBox()">
+    <img src="img/drone_icon.png" alt="Chat Bot"
+      style="width: 40px; height: 40px; object-fit: contain; background: none; border: none; box-shadow: none;" />
+  </div>
+
+  <!-- Floating Chat -->
+  <div id="floating-chat" class="floating-chat" style="display:none;">
+    <div class="chat-header">
+      <span>AI Drone Assistant</span>
+      <button class="close-chat" onclick="toggleChatBox()">&times;</button>
+    </div>
+    <div id="chat-box">
+      <div id="chat-log"></div>
+      <input type="text" id="user-input" placeholder="Ask the AI bot about our drones...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    function toggleChatBox() {
+      var chat = document.getElementById('floating-chat');
+      var bubble = document.getElementById('chat-bubble');
+      if (chat.style.display === 'none' || chat.style.display === '') {
+        chat.style.display = 'block';
+        bubble.style.display = 'none';
+        setTimeout(function () {
+          document.getElementById('user-input').focus();
+        }, 100);
+      } else {
+        chat.style.display = 'none';
+        bubble.style.display = 'flex';
+      }
+    }
+    function sendMessage() {
+      var input = document.getElementById('user-input');
+      var log = document.getElementById('chat-log');
+      var userMsg = input.value.trim();
+      if (userMsg) {
+        log.innerHTML += '<div><b>You:</b> ' + userMsg + '</div>';
+        input.value = '';
+        setTimeout(function () {
+          log.innerHTML += '<div><b>AI:</b> Thank you for your question! Our team will get back to you soon.</div>';
+          log.scrollTop = log.scrollHeight;
+        }, 700);
+      }
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
+          <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
+      </div>
+      <div class="footer-center">
+        <span style="display:flex;align-items:center;gap:0.5em;">
+          <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 2C5.03 2 1 6.03 1 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16.2A7.2 7.2 0 0 1 2.8 11c0-1.61.52-3.1 1.4-4.3l9.1 9.1A7.18 7.18 0 0 1 10 18.2zm5.8-2.1-9.1-9.1A7.18 7.18 0 0 1 10 3.8c3.97 0 7.2 3.23 7.2 7.2 0 1.61-.52 3.1-1.4 4.3z" fill="#2563eb"/></svg>
+          <a href="https://nactengineering.com" target="_blank" style="color:#38bdf8;font-weight:500;">www.nactengineering.com</a>
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">Singapore | info@nactengineering.com</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/></svg>
+        </a>
+        <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#38bdf8"/><path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

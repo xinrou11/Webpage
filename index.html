@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - NACT</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(6px) opacity(0.5);
+      transition: filter 0.3s;
+    }
+
+    /* Hero background section for all pages */
+    .hero-bg {
+      width: 1400px;
+      max-width: 1400px;
+      height: 300px;
+      background-size: cover;
+      background-position: center center;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(30,41,59,0.10);
+    }
+
+    .home-hero-bg {
+      background-image: url('home-hero.jpg');
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(30,41,59,0.45);
+      filter: blur(12px) brightness(0.7) opacity(0.6);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero-title {
+      color: #fff;
+      font-size: 2.7em;
+      margin-top: 0;
+      margin-bottom: 0.3em;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 16px #1e293b;
+    }
+
+    .hero-subtitle {
+      color: #e0e7ef;
+      font-size: 1.25em;
+      text-shadow: 0 1px 8px #1e293b;
+      margin-bottom: 0;
+    }
+    .chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      animation: bot-float 10s linear infinite alternate;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 4px 24px rgba(30,41,59,0.18),
+                  0 1.5px 8px rgba(37,99,235,0.10);
+      backdrop-filter: blur(8px) saturate(1.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: box-shadow 0.2s, background 0.2s;
+      z-index: 9999;
+    }
+    @keyframes bot-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-60vh); }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Background video -->
+  <video class="video-bg" src="video/0_Abstract_Background_3840x2160.mp4"
+    autoplay loop muted playsinline></video>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo-placeholder">
+        <img src="img/logo/NACT ENGINEERING (side by side)_cv.png"
+          alt="DroneServ Logo" class="navbar-logo">
+      </div>
+      <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="product.html">Product</a>
+        <a href="service.html">Service</a>
+        <a href="technology.html">Technology</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg home-hero-bg" style="min-height: 480px; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="max-width: 700px; margin: 0 auto;">
+      <h1 class="hero-title" style="font-size: 3.2em; font-weight: 800; margin-bottom: 0.2em;">Elevate Your Operations with <span style="color:#38bdf8;">DroneServ</span></h1>
+      <p class="hero-subtitle" style="font-size: 1.35em; margin-bottom: 1.2em;">Singapore’s leader in smart tethered drone systems, AI-powered inspections, and next-gen UAV solutions for industry and government.</p>
+      <a href="#features" class="cta-btn">Explore Our Solutions</a>
+    </div>
+  </section>
+  <style>
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+      color: #fff;
+      font-size: 1.15em;
+      font-weight: 700;
+      padding: 0.85em 2.2em;
+      border-radius: 32px;
+      text-decoration: none;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.13);
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5em;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+  </style>
+  <style>
+    .scroll-down-link {
+      display: inline-block;
+      margin-top: 0.5em;
+      color: #2563eb;
+      font-size: 0.98em;
+      font-weight: 400;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: color 0.2s, opacity 0.2s;
+      animation: fadeInPrompt 1.2s 0.5s both;
+    }
+    .scroll-down-link:hover {
+      color: #143a7b;
+      opacity: 1;
+      text-decoration: underline;
+    }
+    .arrow-down-link {
+      font-size: 1.1em;
+      vertical-align: middle;
+      margin-left: 0.2em;
+    }
+    @keyframes bounceDown {
+      0% { transform: translateY(0) rotate(-45deg); }
+      100% { transform: translateY(18px) rotate(-45deg); }
+    }
+    @keyframes fadeInPrompt {
+      from { opacity: 0; }
+      to { opacity: 0.95; }
+    }
+  </style>
+
+  <!-- Features/Services Section -->
+  <section id="features" style="background: #fafdff; padding: 3em 0 2.5em 0;">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img src="img/feature-tether.png" alt="Smart Tether" class="feature-icon">
+        <h3>Smart Tethered Drones</h3>
+        <p>Continuous power, secure data, and safe operations for critical missions—anywhere, anytime.</p>
+      </div>
+      <div class="feature-card">
+        <img src="img/feature-ai.png" alt="AI Inspection" class="feature-icon">
+        <h3>AI-Powered Inspections</h3>
+        <p>Automated defect detection, 3D modeling, and actionable reports for infrastructure and assets.</p>
+      </div>
+      <div class="feature-card">
+        <img src="img/feature-uav.png" alt="UAV Solutions" class="feature-icon">
+        <h3>Custom UAV Solutions</h3>
+        <p>From industrial to government, we deliver tailored drone systems and accessories for every need.</p>
+      </div>
+      <div class="feature-card">
+        <img src="img/feature-support.png" alt="Support" class="feature-icon">
+        <h3>Expert Support</h3>
+        <p>Singapore-based, globally trusted. Our team ensures your drones are always mission-ready.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5em;">
+      <a href="about.html" class="cta-btn" style="font-size:1em;">Learn More About Us</a>
+    </div>
+  </section>
+  <style>
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.2em;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: 0.5em;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 2.2em 1.3em 1.5em 1.3em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 6px 32px rgba(30,41,59,0.13);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.1em;
+      object-fit: contain;
+    }
+    .feature-card h3 {
+      color: #2563eb;
+      font-size: 1.25em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+    .feature-card p {
+      color: #334155;
+      font-size: 1.05em;
+      margin-bottom: 0;
+    }
+  </style>
+  <!-- Product/Tech Highlights -->
+  <section style="background: linear-gradient(90deg,#e0e7ef 0%,#fafdff 100%); padding: 2.5em 0 2em 0;">
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <img src="img/Tether2k/T2K v1 .png" alt="Tethered Drone" class="highlight-img">
+        <h4>Leviathan™ Tethered Drone</h4>
+        <p>Unmatched endurance and safety for industrial and public safety missions.</p>
+        <a href="product.html" class="highlight-link">See Product</a>
+      </div>
+      <div class="highlight-card">
+        <img src="img/feature-ai.png" alt="AI Inspection" class="highlight-img">
+        <h4>AI Inspection Platform</h4>
+        <p>Automated defect detection, 3D modeling, and actionable reports for infrastructure and assets.</p>
+        <a href="service.html" class="highlight-link">See Service</a>
+      </div>
+      <div class="highlight-card">
+        <img src="img/feature-uav.png" alt="Custom UAV" class="highlight-img">
+        <h4>Custom UAV Solutions</h4>
+        <p>Tailored drone systems and accessories for every industry and mission.</p>
+        <a href="technology.html" class="highlight-link">See Technology</a>
+      </div>
+    </div>
+  </section>
+  <style>
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2em;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .highlight-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 1.5em 1.1em 1.2em 1.1em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 280px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .highlight-card:hover {
+      box-shadow: 0 6px 32px rgba(30,41,59,0.13);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .highlight-img {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 1em;
+      object-fit: contain;
+    }
+    .highlight-card h4 {
+      color: #2563eb;
+      font-size: 1.13em;
+      margin-bottom: 0.4em;
+      font-weight: 700;
+    }
+    .highlight-card p {
+      color: #334155;
+      font-size: 1em;
+      margin-bottom: 0.7em;
+    }
+    .highlight-link {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: underline;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    .highlight-link:hover {
+      color: #1e40af;
+    }
+  </style>
+
+  <!-- Floating AI Bot Chat Bubble -->
+  <div id="chat-bubble" class="chat-bubble" onclick="toggleChatBox()">
+    <img src="img/drone_icon.png" alt="Chat Bot"
+      style="width: 40px; height: 40px; object-fit: contain; background: none; border: none; box-shadow: none;" />
+  </div>
+
+  <!-- Floating Chat -->
+  <div id="floating-chat" class="floating-chat" style="display:none;">
+    <div class="chat-header">
+      <span>AI Drone Assistant</span>
+      <button class="close-chat" onclick="toggleChatBox()">&times;</button>
+    </div>
+    <div id="chat-box">
+      <div id="chat-log"></div>
+      <input type="text" id="user-input" placeholder="Ask the AI bot about our drones...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Hamburger nav toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      var hamburger = document.getElementById('hamburger-menu');
+      var navLinks = document.getElementById('navLinks');
+      if (hamburger) {
+        hamburger.addEventListener('click', function () {
+          navLinks.classList.toggle('open');
+          var expanded = hamburger.getAttribute('aria-expanded') === 'true';
+          hamburger.setAttribute('aria-expanded', !expanded);
+        });
+      }
+    });
+
+    // Chat toggle function
+    function toggleChatBox() {
+      var chat = document.getElementById('floating-chat');
+      var bubble = document.getElementById('chat-bubble');
+
+      if (chat.style.display === 'none' || chat.style.display === '') {
+        chat.style.display = 'block';
+        bubble.style.display = 'none';
+        setTimeout(function () {
+          document.getElementById('user-input').focus();
+        }, 100);
+      } else {
+        chat.style.display = 'none';
+        bubble.style.display = 'flex';
+      }
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
+          <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
+      </div>
+      <div class="footer-center">
+        <span style="display:flex;align-items:center;gap:0.5em;">
+          <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 2C5.03 2 1 6.03 1 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16.2A7.2 7.2 0 0 1 2.8 11c0-1.61.52-3.1 1.4-4.3l9.1 9.1A7.18 7.18 0 0 1 10 18.2zm5.8-2.1-9.1-9.1A7.18 7.18 0 0 1 10 3.8c3.97 0 7.2 3.23 7.2 7.2 0 1.61-.52 3.1-1.4 4.3z" fill="#2563eb"/></svg>
+          <a href="https://nactengineering.com" target="_blank" style="color:#38bdf8;font-weight:500;">www.nactengineering.com</a>
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">Singapore | info@nactengineering.com</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/></svg>
+        </a>
+        <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#38bdf8"/><path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

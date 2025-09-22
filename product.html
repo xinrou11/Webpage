@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - NACT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.product-bg {
+      background: #fafdff;
+    }
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(6px) opacity(0.5);
+      transition: filter 0.3s;
+    }
+
+    /* Hero Section */
+    .hero-bg {
+      width: 1400px;
+      max-width: 1400px;
+      height: 300px;
+      background-size: cover;
+      background-position: center center;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(30,41,59,0.10);
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30,41,59,0.45);
+      filter: blur(12px) brightness(0.7) opacity(0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .hero-title {
+      color: #fff;
+      font-size: 2.7em;
+      margin-bottom: 0.3em;
+      text-shadow: 0 2px 16px #1e293b;
+    }
+    .hero-subtitle {
+      color: #e0e7ef;
+      font-size: 1.25em;
+      text-shadow: 0 1px 8px #1e293b;
+    }
+    .product-hero-bg {
+      background-image: url('product-hero.jpg');
+    }
+    .tab-links {
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      margin-bottom: 1.5em;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tab-link {
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 1.05em;
+      text-decoration: none;
+      padding: 0.6em 1.6em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    .tab-link.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+    .tab-link:hover {
+      background: #1e40af;
+      color: #fff;
+      border-color: #1e40af;
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Flex layout */
+    .tab-flex {
+      display: flex;
+      gap: 2em;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Carousel */
+    .tab-carousel {
+      position: relative;
+      flex: 1 1 480px;
+      max-width: 600px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(30,41,59,0.15);
+      background: #f1f5f9;
+    }
+
+    .tab-carousel-pic {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain; /* show full image */
+      background: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .tab-carousel-pic.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    /* Buttons */
+    .tab-carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(37,99,235,0.85);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 2.2em;
+      height: 2.2em;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background 0.3s;
+      z-index: 2;
+    }
+    .tab-carousel-btn:hover {
+      background: rgba(30,64,175,0.9);
+    }
+    .tab-carousel-btn.left { left: 10px; }
+    .tab-carousel-btn.right { right: 10px; }
+
+    /* Description */
+    .tab-desc {
+      flex: 1;
+      font-size: 1.1em;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .tab-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+      .tab-carousel {
+        width: 100%;
+        max-height: 250px;
+      }
+      .tab-desc {
+        margin-top: 1em;
+      }
+    }
+  .chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      animation: bot-float 10s linear infinite alternate;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 4px 24px rgba(30,41,59,0.18),
+                  0 1.5px 8px rgba(37,99,235,0.10);
+      backdrop-filter: blur(8px) saturate(1.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: box-shadow 0.2s, background 0.2s;
+      z-index: 9999;
+    }
+    @keyframes bot-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-60vh); }
+    }
+
+  </style>
+</head>
+<body class="product-bg">
+  <video class="video-bg" src="video/0_Abstract_Background_3840x2160.mp4" autoplay loop muted playsinline></video>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo-placeholder">
+        <img src="img/logo/NACT ENGINEERING (side by side)_cv.png" alt="DroneServ Logo" class="navbar-logo">
+      </div>
+      <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="product.html" class="active">Product</a>
+        <a href="service.html">Service</a>
+        <a href="technology.html">Technology</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg product-hero-bg" style="min-height: 380px; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="max-width: 700px; margin: 0 auto;">
+      <h1 class="hero-title" style="font-size: 3em; font-weight: 800; margin-bottom: 0.2em;">Our <span style="color:#38bdf8;">Products</span></h1>
+      <p class="hero-subtitle" style="font-size: 1.25em; margin-bottom: 1.2em;">Explore our advanced tethered drone systems, battery packs, and smart accessories for every mission.</p>
+      <a href="#product-tabs" class="cta-btn">See Product Range</a>
+    </div>
+  </section>
+  <style>
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+      color: #fff;
+      font-size: 1.15em;
+      font-weight: 700;
+      padding: 0.85em 2.2em;
+      border-radius: 32px;
+      text-decoration: none;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.13);
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5em;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+  </style>
+
+  <!-- Tethered Drone Systems Section -->
+  <section style="background: linear-gradient(90deg,#fafdff 60%,#e0e7ef 100%); padding: 4em 0 3em 0; border-bottom: 0;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <h2 style="text-align:center; color:#1e293b; font-size:2.4em; margin-bottom:0.2em; letter-spacing:1px; font-weight:800;">Tethered Drone Systems</h2>
+      <p style="text-align:center; color:#2563eb; font-size:1.18em; margin-bottom:2.2em;">Industry-leading, robust, and mission-ready platforms for every application.</p>
+      <div class="feature-grid" style="margin-bottom:0;">
+        <div class="feature-card">
+          <img src="img/Tether2k/T2K v1 .png" alt="Tether 2K" class="feature-icon">
+          <h3>Leviathan™ Tether 2K</h3>
+          <p>Lightweight, portable, and designed for one-man operation. Up to 4kg drone, 60m+ tether, 80Mbps comms.</p>
+        </div>
+        <div class="feature-card">
+          <img src="img/Tether3k/T3K V1.png" alt="Tether 3K" class="feature-icon">
+          <h3>Seraphim™ Tether 3K</h3>
+          <p>High power, minimum weight, touchscreen interface, up to 15kg drone, 150m tether, 4K live streaming.</p>
+        </div>
+        <div class="feature-card">
+          <img src="img/Tether4k/T4k v5 transp.png" alt="Tether 4K" class="feature-icon">
+          <h3>Titan™ Tether 4K</h3>
+          <p>Industrial/military grade, up to 80kg drone, 500m tether, fast deployability, robust and reliable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessories Section -->
+  <section style="background: linear-gradient(90deg,#f5faff 60%,#e0e7ef 100%); padding: 4em 0 3em 0; border-top: 0;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <h2 style="text-align:center; color:#1e293b; font-size:2.4em; margin-bottom:0.2em; letter-spacing:1px; font-weight:800;">Accessories</h2>
+      <p style="text-align:center; color:#2563eb; font-size:1.18em; margin-bottom:2.2em;">Enhance your system with reliable, high-performance accessories.</p>
+      <div class="accessory-carousel-wrapper">
+        <button class="carousel-btn left" aria-label="Scroll left" onclick="scrollAccessoryCarousel(-1)">&lt;</button>
+        <div class="accessory-carousel" id="accessory-carousel">
+          <div class="feature-card" onclick="showAccessoryModal(0)" style="cursor:pointer;">
+            <img src="img/Battery/Battery v1 .png" alt="Battery Packs" class="feature-icon">
+            <h3>External Battery Packs™</h3>
+            <p>Enhance drone flight hours with NACT hot swappable battery pack ranging from 560Wh to 2100Wh to meet your needs.</p>
+          </div>
+          <div class="feature-card" onclick="showAccessoryModal(1)" style="cursor:pointer;">
+            <img src="img/LightCore/core1.png" alt="Power Modules" class="feature-icon">
+            <h3>Power Modules™</h3>
+            <p>NACT Power Modules is designed for long distance DC power transfer using thin and light cables. Mobile platforms that require a lightweight or flexible tether cable are best coupled with our product.</p>
+          </div>
+          <div class="feature-card" onclick="showAccessoryModal(2)" style="cursor:pointer;">
+            <img src="img/S@N v1.png" alt="Smart Charger" class="feature-icon">
+            <h3>Sun@Night™
+(Lightcore)</h3>
+            <p>The Sun@Night™ enables small and portable drones to quickly deploy lighting quality typical of infrastructure assets for enhancement in camera quality. It is compatible with NACT tether drone systems for increased operational time for many applications ranging from 10k to 150k lumens.</p>
+          </div>
+          <div class="feature-card" onclick="showAccessoryModal(3)" style="cursor:pointer;">
+            <img src="img/Chronicles 3U v1.png" alt="Transport Case" class="feature-icon">
+            <h3>Chronicles™</h3>
+            <p>Fully customizable ChroniclesTM VPX power supply module is built to military standards comprising Mil-Std 810, Mil-Std 461, Mil-Std 704 etc, ensuring very stable supply voltage, minimal fluctuations, and low noise PSU during operation. ChroniclesTM assist with good compliance.</p>
+          </div>
+        </div>
+        <button class="carousel-btn right" aria-label="Scroll right" onclick="scrollAccessoryCarousel(1)">&gt;</button>
+      </div>
+    </div>
+  </section>
+  <style>
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.2em;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: 0.5em;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 2.2em 1.3em 1.5em 1.3em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 6px 32px rgba(30,41,59,0.13);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.1em;
+      object-fit: contain;
+    }
+    .feature-card h3 {
+      color: #2563eb;
+      font-size: 1.25em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+    .feature-card p {
+      color: #334155;
+      font-size: 1.05em;
+      margin-bottom: 0;
+    }
+    .accessory-carousel-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      position: relative;
+      margin-bottom: 2em;
+    }
+    .accessory-carousel {
+      display: flex;
+      gap: 2.2em;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 0.5em;
+      scrollbar-width: thin;
+      scrollbar-color: #2563eb #e0e7ef;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+    .accessory-carousel::-webkit-scrollbar {
+      height: 10px;
+    }
+    .accessory-carousel::-webkit-scrollbar-thumb {
+      background: #2563eb;
+      border-radius: 6px;
+    }
+    .accessory-carousel::-webkit-scrollbar-track {
+      background: #e0e7ef;
+      border-radius: 6px;
+    }
+    .carousel-btn {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 2.5em;
+      height: 2.5em;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.10);
+      transition: background 0.18s, box-shadow 0.18s, transform 0.15s;
+      z-index: 2;
+      position: relative;
+    }
+    .carousel-btn:hover {
+      background: #1e40af;
+      transform: scale(1.08);
+    }
+    .carousel-btn.left {
+      margin-right: 0.5em;
+    }
+    .carousel-btn.right {
+      margin-left: 0.5em;
+    }
+    .accessory-carousel .feature-card {
+      min-width: 280px;
+      max-width: 340px;
+      flex: 0 0 320px;
+      /* Match tether card size */
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      padding: 2.2em 1.3em 1.5em 1.3em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    @media (max-width: 700px) {
+      .accessory-carousel .feature-card {
+        min-width: 220px;
+        max-width: 90vw;
+        flex: 0 0 80vw;
+      }
+    }
+  </style>
+  <!-- MAIN OMITTED: Tabs and carousels removed as requested -->
+
+  <!-- Floating AI Bot Chat Bubble -->
+  <div id="chat-bubble" class="chat-bubble" onclick="toggleChatBox()">
+    <img src="img/drone_icon.png" alt="Chat Bot"
+      style="width: 40px; height: 40px; object-fit: contain; background: none; border: none; box-shadow: none;" />
+  </div>
+
+  <!-- Floating Chat -->
+  <div id="floating-chat" class="floating-chat" style="display:none;">
+    <div class="chat-header">
+      <span>AI Drone Assistant</span>
+      <button class="close-chat" onclick="toggleChatBox()">&times;</button>
+    </div>
+    <div id="chat-box">
+      <div id="chat-log"></div>
+      <input type="text" id="user-input" placeholder="Ask the AI bot about our drones...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Modal for accessory details -->
+<div id="accessory-modal" class="modal" style="display:none;position:fixed;z-index:10000;left:0;top:0;width:100vw;height:100vh;background:rgba(30,41,59,0.45);backdrop-filter:blur(2px);align-items:center;justify-content:center;">
+  <div class="modal-content" style="background:#fff;border-radius:16px;max-width:420px;width:90vw;padding:2em 1.5em;box-shadow:0 8px 32px rgba(30,41,59,0.18);position:relative;text-align:center;">
+    <button onclick="closeAccessoryModal()" style="position:absolute;top:1em;right:1em;background:none;border:none;font-size:1.5em;color:#2563eb;cursor:pointer;">&times;</button>
+    <div id="modal-img"></div>
+    <h3 id="modal-title" style="margin-top:1em;"></h3>
+    <p id="modal-desc" style="margin-top:0.7em;color:#334155;"></p>
+  </div>
+</div>
+<style>
+  .modal { display: flex; }
+  .modal[style*="display:none"] { display: none !important; }
+</style>
+<script>
+  const accessoryData = [
+    {
+      img: 'img/Battery/Battery v1 .png',
+      alt: 'Battery Packs',
+      title: 'External Battery PacksTM',
+      desc: 'Enhance drone flight hours with NACT hot swappable battery pack ranging from 560Wh to 2100Wh to meet your needs.'
+    },
+    {
+      img: 'img/LightCore/core1.png',
+      alt: 'Power Modules',
+      title: 'Power Modules™',
+      desc: 'NACT Power Modules is designed for long distance DC power transfer using thin and light cables. Mobile platforms that require a lightweight or flexible tether cable are best coupled with our product.'
+    },
+    {
+      img: 'img/S@N v1.png',
+      alt: 'Smart Charger',
+      title: 'Sun@NightTM (Lightcore)',
+      desc: 'The Sun@NightTM enables small and portable drones to quickly deploy lighting quality typical of infrastructure assets for enhancement in camera quality. It is compatible with NACT tether drone systems for increased operational time for many applications ranging from 10k to 150k lumens.'
+    },
+    {
+      img: 'img/Chronicles 3U v1.png',
+      alt: 'Transport Case',
+      title: 'ChroniclesTM',
+      desc: 'Fully customizable ChroniclesTM VPX power supply module is built to military standards comprising Mil-Std 810, Mil-Std 461, Mil-Std 704 etc, ensuring very stable supply voltage, minimal fluctuations, and low noise PSU during operation. ChroniclesTM assist with good compliance.'
+    }
+  ];
+  function showAccessoryModal(idx) {
+    const modal = document.getElementById('accessory-modal');
+    const data = accessoryData[idx];
+    document.getElementById('modal-img').innerHTML = `<img src="${data.img}" alt="${data.alt}" style="width:80px;height:80px;object-fit:contain;margin-bottom:1em;">`;
+    document.getElementById('modal-title').textContent = data.title;
+    document.getElementById('modal-desc').textContent = data.desc;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAccessoryModal() {
+    document.getElementById('accessory-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  // Close modal on background click
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('accessory-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeAccessoryModal();
+    });
+  });
+  </script>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script>
+    // Product tab carousels
+    const tabCarousels = {};
+    function initTabCarousels() {
+      ['tab2k','tab3k','tab4k','tab1','tab2'].forEach(t => {
+        const pics = document.querySelectorAll('#' + t + ' .tab-carousel-pic');
+        if (pics.length) { tabCarousels[t] = { pics: pics, idx: 0 }; }
+      });
+    }
+    function showTabPic(tab, idx) {
+      const c = tabCarousels[tab]; if (!c) return;
+      c.pics.forEach((pic, i) => pic.classList.toggle('active', i === idx));
+    }
+    function prevTabPic(tab) {
+      const c = tabCarousels[tab]; if (!c) return;
+      c.idx = (c.idx - 1 + c.pics.length) % c.pics.length; showTabPic(tab, c.idx);
+    }
+    function nextTabPic(tab) {
+      const c = tabCarousels[tab]; if (!c) return;
+      c.idx = (c.idx + 1) % c.pics.length; showTabPic(tab, c.idx);
+    }
+    function toggleChatBox() {
+      var chat = document.getElementById('floating-chat');
+      var bubble = document.getElementById('chat-bubble');
+      if (chat.style.display === 'none' || chat.style.display === '') {
+        chat.style.display = 'block';
+        bubble.style.display = 'none';
+        setTimeout(function () {
+          document.getElementById('user-input').focus();
+        }, 100);
+      } else {
+        chat.style.display = 'none';
+        bubble.style.display = 'flex';
+      }
+    }
+    function showTab(evt, tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-link').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+      evt.preventDefault();
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      initTabCarousels();
+      ['tab2k','tab3k','tab4k','tab1','tab2'].forEach(function(tab) {
+        setInterval(function() { nextTabPic(tab); }, 5000);
+      });
+    });
+    function scrollAccessoryCarousel(direction) {
+      const carousel = document.getElementById('accessory-carousel');
+      const card = carousel.querySelector('.feature-card');
+      if (!card) return;
+      const cardWidth = card.offsetWidth + 22; // gap
+      carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+    }
+    // Drag to scroll
+    (function() {
+      const carousel = document.getElementById('accessory-carousel');
+      let isDown = false, startX, scrollLeft;
+      if (!carousel) return;
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.classList.add('dragging');
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      });
+      carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.classList.remove('dragging');
+      });
+      carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.classList.remove('dragging');
+      });
+      carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        carousel.scrollLeft = scrollLeft - walk;
+      });
+      // Touch events
+      carousel.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      });
+      carousel.addEventListener('touchend', () => {
+        isDown = false;
+      });
+      carousel.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        carousel.scrollLeft = scrollLeft - walk;
+      });
+    })();
+  </script>
+</body>
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
+        <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
+      </span>
+      <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
+    </div>
+    <div class="footer-center">
+      <span style="display:flex;align-items:center;gap:0.5em;">
+        <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 2C5.03 2 1 6.03 1 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16.2A7.2 7.2 0 0 1 2.8 11c0-1.61.52-3.1 1.4-4.3l9.1 9.1A7.18 7.18 0 0 1 10 18.2zm5.8-2.1-9.1-9.1A7.18 7.18 0 0 1 10 3.8c3.97 0 7.2 3.23 7.2 7.2 0 1.61-.52 3.1-1.4 4.3z" fill="#2563eb"/></svg>
+        <a href="https://nactengineering.com" target="_blank" style="color:#38bdf8;font-weight:500;">www.nactengineering.com</a>
+      </span>
+      <span style="font-size:0.98em;opacity:0.85;">Singapore | info@nactengineering.com</span>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
+        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/></svg>
+      </a>
+      <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
+        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#38bdf8"/><path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+</html>

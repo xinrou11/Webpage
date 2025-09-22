@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NACT Engineering</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Base */
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      color: #0a0a23;
+    }
+
+    a {
+      color: #0073e6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #f8fafc;
+      padding: 1.5em 2em;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start; /* align top so left stacks */
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3em;
+      max-width: 70%;
+    }
+
+    .footer-left span {
+      display: block;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 1em;
+      margin-top: 0.5em;
+    }
+
+    .footer-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-right {
+        margin-top: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Example Main Content -->
+  <header>
+    <h1>Welcome to NACT Engineering</h1>
+    <p>Leading drone solutions for inspection, surveying, and engineering projects.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Our Services</h2>
+      <p>We provide advanced UAV inspections, 3D mapping, and precision surveying for industries worldwide.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <!-- Left (Logo + Copyright + Center Text) -->
+      <div class="footer-left">
+        <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
+          <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> 
+          NACT Engineering
+        </span>
+        <span style="font-size:0.95em;opacity:0.85;">
+          &copy; 2025 NACT Engineering. All rights reserved.
+        </span>
+        <span style="font-size:0.9em;opacity:0.75;">
+          Delivering advanced drone solutions for inspection, surveying, and engineering projects.
+        </span>
+      </div>
+
+      <!-- Right (Icons) -->
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="6" fill="#2563eb"/>
+            <path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
+          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="6" fill="#38bdf8"/>
+            <path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
