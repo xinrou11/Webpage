@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - NACT</title>
   <link rel="stylesheet" href="style.css">
+      <script src="script.js"></script>
+          <script src="script.js"></script>
   <style>
     .video-bg {
       position: fixed;
@@ -128,17 +130,27 @@
       </div>
       <!-- Right: Large contact form -->
       <div class="contact-form-card contact-equal-card">
-        <h3 class="contact-title">Send Us a Message</h3>
-        <form class="contact-form-section" action="mailto:info@nactengineering.com" method="post" enctype="text/plain">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" required>
-          <label for="email">Your Email</label>
-          <input type="email" id="email" name="email" required>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="7" required></textarea>
-          <button type="submit" style="margin-top:0.5em;">Send Message</button>
-        </form>
-      </div>
+  <h3 class="contact-title">Send Us a Message</h3>
+  <form class="contact-form-section" action="mailto:info@nactengineering.com" method="post" enctype="text/plain">
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+    </div>
+
+    <button type="submit" class="cta-btn">Send Message</button>
+  </form>
+</div>
+
     </div>
   </section>
   <style>
@@ -372,57 +384,6 @@
         max-width: 100%;
       }
     }
-
-    /* Hero section */
-    .hero-bg {
-      width: 1400px;
-      max-width: 1400px;
-      height: 300px;
-      background-size: cover;
-      background-position: center center;
-      position: relative;
-      margin-left: auto;
-      margin-right: auto;
-      z-index: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0 0 24px 24px;
-      overflow: hidden;
-      box-shadow: 0 4px 32px rgba(30,41,59,0.10);
-    }
-    .contact-hero-bg {
-      background-image: url('contact-hero.jpg');
-    }
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(30,41,59,0.45);
-      filter: blur(12px) brightness(0.7) opacity(0.6);
-      z-index: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      width: 100%;
-    }
-    .hero-title {
-      color: #fff;
-      font-size: 2.7em;
-      margin-top: 0;
-      margin-bottom: 0.3em;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 16px #1e293b;
-    }
-    .hero-subtitle {
-      color: #e0e7ef;
-      font-size: 1.25em;
-      text-shadow: 0 1px 8px #1e293b;
-      margin-bottom: 0;
-    }
-
     /* Main content */
     .page-main {
       max-width: 900px;
@@ -483,57 +444,39 @@
   <!-- Scripts -->
   <script src="script.js"></script>
   <script>
-    // Hamburger nav toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      var hamburger = document.getElementById('hamburger-menu');
-      var navLinks = document.getElementById('navLinks');
-      if (hamburger) {
-        hamburger.addEventListener('click', function () {
-          navLinks.classList.toggle('open');
-          var expanded = hamburger.getAttribute('aria-expanded') === 'true';
-          hamburger.setAttribute('aria-expanded', !expanded);
-        });
-      }
-    });
 
     // Chat toggle
     function toggleChatBox() {
       var chat = document.getElementById('floating-chat');
       var bubble = document.getElementById('chat-bubble');
       if (chat.style.display === 'none' || chat.style.display === '') {
-        chat.style.display = 'block'; 
+        chat.style.display = 'block';
         bubble.style.display = 'none';
-        setTimeout(function(){ document.getElementById('user-input').focus(); }, 100);
+        setTimeout(function () {
+          document.getElementById('user-input').focus();
+        }, 100);
       } else {
-        chat.style.display = 'none'; 
+        chat.style.display = 'none';
         bubble.style.display = 'flex';
       }
     }
   </script>
 </body>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-left">
         <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
-          <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
+          <img src="img/logo/NACT blue .jpg" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
         </span>
         <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
       </div>
-      <div class="footer-center">
-        <span style="display:flex;align-items:center;gap:0.5em;">
-          <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 2C5.03 2 1 6.03 1 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16.2A7.2 7.2 0 0 1 2.8 11c0-1.61.52-3.1 1.4-4.3l9.1 9.1A7.18 7.18 0 0 1 10 18.2zm5.8-2.1-9.1-9.1A7.18 7.18 0 0 1 10 3.8c3.97 0 7.2 3.23 7.2 7.2 0 1.61-.52 3.1-1.4 4.3z" fill="#2563eb"/></svg>
-          <a href="https://nactengineering.com" target="_blank" style="color:#38bdf8;font-weight:500;">www.nactengineering.com</a>
-        </span>
-        <span style="font-size:0.98em;opacity:0.85;">Singapore | info@nactengineering.com</span>
-      </div>
+
       <div class="footer-right">
-        <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
-          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/></svg>
-        </a>
-        <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
-          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#38bdf8"/><path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/></svg>
-        </a>
+  <a href="contact.html" class="cta-btn">
+    Contact Us
+  </a>
       </div>
     </div>
   </footer>

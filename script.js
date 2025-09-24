@@ -11,17 +11,28 @@ window.addEventListener('scroll', function() {
   }
 });
 // Hamburger menu toggle for responsive nav
-window.addEventListener('DOMContentLoaded', function() {
-  var navToggle = document.getElementById('navToggle');
-  var navLinks = document.getElementById('navLinks');
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('open');
-      navToggle.classList.toggle('open');
+    // Hamburger nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open');
+      });
     });
-  }
-});
 
+    // Hamburger nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburger-menu');
+      var navLinks = document.getElementById('navLinks');
+      if (hamburger) {
+        hamburger.addEventListener('click', function () {
+          navLinks.classList.toggle('open');
+          var expanded = hamburger.getAttribute('aria-expanded') === 'true';
+          hamburger.setAttribute('aria-expanded', !expanded);
+        });
+      }
+    });
 // Simple AI bot logic for all pages
 function sendMessage() {
   const userInput = document.getElementById('user-input');

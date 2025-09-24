@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - NACT</title>
   <link rel="stylesheet" href="style.css">
-
   <style>
     .video-bg {
       position: fixed;
@@ -30,8 +30,7 @@
       height: 64px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 4px 24px 0 rgba(30,41,59,0.18),
-                  0 1.5px 8px 0 rgba(37,99,235,0.10);
+      box-shadow: 0 4px 24px 0 rgba(30, 41, 59, 0.18), 0 1.5px 8px 0 rgba(37, 99, 235, 0.10);
       backdrop-filter: blur(8px) saturate(1.2);
       display: flex;
       align-items: center;
@@ -41,8 +40,13 @@
     }
 
     @keyframes bot-float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-60vh); }
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-60vh);
+      }
     }
 
     /* About Cards */
@@ -80,7 +84,7 @@
     }
 
     .about-card:hover {
-      box-shadow: 0 4px 24px rgba(30,41,59,0.18);
+      box-shadow: 0 4px 24px rgba(30, 41, 59, 0.18);
       transform: translateY(-6px) scale(1.04);
     }
 
@@ -91,6 +95,7 @@
       margin-bottom: 0.5em;
       z-index: 2;
     }
+
     .about-card-text {
       color: #1e293b;
     }
@@ -99,8 +104,11 @@
       opacity: 0;
       pointer-events: none;
       position: absolute;
-      left: 0; right: 0; top: 0; bottom: 0;
-      background: rgba(30,41,59,0.97);
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(30, 41, 59, 0.97);
       color: #fff;
       display: flex;
       align-items: center;
@@ -145,22 +153,29 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1.2em;
       }
+
       .about-row {
         grid-template-columns: 1fr;
         gap: 1.2em;
       }
     }
+
     @media (max-width: 700px) {
       .about-cards {
         grid-template-columns: 1fr;
         gap: 1em;
       }
+
       .about-card {
         width: 95vw;
         max-width: 340px;
         height: 180px;
       }
-      .about-main-content { padding: 0 0.5em; }
+
+      .about-main-content {
+        padding: 0 0.5em;
+      }
+
       .about-row {
         grid-template-columns: 1fr;
         gap: 1em;
@@ -170,7 +185,7 @@
     .about-section {
       background: #f8fafc;
       border-radius: 12px;
-      box-shadow: 0 1px 6px rgba(30,41,59,0.06);
+      box-shadow: 0 1px 6px rgba(30, 41, 59, 0.06);
       padding: 2em 2em 1.5em 2em;
       font-size: 1.13em;
       color: #334155;
@@ -195,75 +210,19 @@
         gap: 1.2em;
         align-items: center;
       }
+
       .about-card {
         width: 95vw;
         max-width: 340px;
         height: 180px;
       }
-      .about-main-content { padding: 0 0.5em; }
+
+      .about-main-content {
+        padding: 0 0.5em;
+      }
     }
 
-    /* Hero section */
-    .hero-bg {
-      width: 1400px;
-      max-width: 1400px;
-      height: 300px;
-      background-size: cover;
-      background-position: center center;
-      position: relative;
-      margin-left: auto;
-      margin-right: auto;
-      z-index: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0 0 24px 24px;
-      overflow: hidden;
-      box-shadow: 0 4px 32px rgba(30,41,59,0.10);
-    }
-
-    @media (max-width: 1250px) {
-      .hero-bg { max-width: 100vw; border-radius: 0; }
-    }
-
-    @media (max-width: 700px) {
-      .hero-bg { height: 220px; }
-    }
-
-    .about-hero-bg { background-image: url('about-hero.jpg'); }
-
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(30,41,59,0.45);
-      filter: blur(12px) brightness(0.7) opacity(0.6);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      width: 100%;
-    }
-
-    .hero-title {
-      color: #fff;
-      font-size: 2.7em;
-      margin-top: 0;
-      margin-bottom: 0.3em;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 16px #1e293b;
-    }
-
-    .hero-subtitle {
-      color: #e0e7ef;
-      font-size: 1.25em;
-      text-shadow: 0 1px 8px #1e293b;
-      margin-bottom: 0;
-    }
-
+    
     /* Flying drone animation */
     .flying-drone-icon {
       display: inline-block;
@@ -271,46 +230,37 @@
     }
 
     @keyframes flyUpDown {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-16%); }
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-16%);
+      }
     }
   </style>
 </head>
 
-<body>
-  <!-- Background Video -->
-  <video class="video-bg" src="video/0_Abstract_Background_3840x2160.mp4"
-    autoplay loop muted playsinline></video>
-
-  <!-- Navigation -->
+<body> <!-- Background Video --> <video class="video-bg" src="video/0_Abstract_Background_3840x2160.mp4" autoplay loop
+    muted playsinline></video> <!-- Navigation -->
   <nav>
     <div class="nav-container">
-      <div class="logo-placeholder">
-        <img src="img/logo/NACT ENGINEERING (side by side)_cv.png"
-          alt="DroneServ Logo" class="navbar-logo">
-      </div>
-      <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
-        <a href="about.html" class="active">About</a>
-        <a href="product.html">Product</a>
-        <a href="service.html">Service</a>
-        <a href="technology.html">Technology</a>
-        <a href="contact.html">Contact</a>
-      </div>
+      <div class="logo-placeholder"> <img src="img/logo/NACT ENGINEERING (side by side)_cv.png" alt="DroneServ Logo"
+          class="navbar-logo"> </div> <button class="hamburger" id="hamburger-menu" aria-label="Open navigation"
+        aria-expanded="false" aria-controls="navLinks"> <span></span> <span></span> <span></span> </button>
+      <div class="nav-links" id="navLinks"> <a href="index.html">Home</a> <a href="about.html" class="active">About</a>
+        <a href="product.html">Product</a> <a href="service.html">Service</a> <a href="technology.html">Technology</a>
+        <a href="contact.html">Contact</a> </div>
     </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero-bg about-hero-bg" style="min-height: 380px; display: flex; align-items: center; justify-content: center;">
+  </nav> <!-- Hero Section -->
+  <section class="hero-bg about-hero-bg"
+    style="min-height: 380px; display: flex; align-items: center; justify-content: center;">
     <div class="hero-content" style="max-width: 700px; margin: 0 auto;">
-      <h1 class="hero-title" style="font-size: 3em; font-weight: 800; margin-bottom: 0.2em;">About <span style="color:#38bdf8;">NACT Engineering</span></h1>
-      <p class="hero-subtitle" style="font-size: 1.25em; margin-bottom: 1.2em;">Founded in Singapore, we are pioneers in smart tethered drone systems, AI-powered inspections, and next-gen UAV solutions for industry and government.</p>
-      <a href="#about-values" class="cta-btn">Our Values & Vision</a>
+      <h1 class="hero-title" style="font-size: 3em; font-weight: 800; margin-bottom: 0.2em;">About <span
+          style="color:#38bdf8;">NACT Engineering</span></h1>
+      <p class="hero-subtitle" style="font-size: 1.25em; margin-bottom: 1.2em;">Founded in Singapore, we are pioneers in
+        smart tethered drone systems, AI-powered inspections, and next-gen UAV solutions for industry and government.
+      </p> <a href="#about-values" class="cta-btn">Our Values & Vision</a>
     </div>
   </section>
   <style>
@@ -323,33 +273,36 @@
       padding: 0.85em 2.2em;
       border-radius: 32px;
       text-decoration: none;
-      box-shadow: 0 2px 16px rgba(30,41,59,0.13);
+      box-shadow: 0 2px 16px rgba(30, 41, 59, 0.13);
       transition: background 0.2s, transform 0.2s;
       margin-top: 0.5em;
     }
+
     .cta-btn:hover {
       background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
       transform: translateY(-2px) scale(1.04);
     }
-  </style>
-
-  <!-- About Values/Highlights -->
+  </style> <!-- About Values/Highlights -->
   <section id="about-values" style="background: #fafdff; padding: 3em 0 2.5em 0;">
     <div class="feature-grid">
-      <div class="feature-card">
-        <img src="img/feature-tether.png" alt="Promise" class="feature-icon">
+      <div class="feature-card"> <img src="img/icon/commitment.png" alt="Promise" class="feature-icon">
         <h3>Our Promise</h3>
-        <p>To lead the market with technological superiority and robotics engineering that achieves what others cannot.</p>
+        <p>To constantly remain at the top of our game, leading the market with sheer
+technological superiority. With robotics engineering that can do what no
+others can
+        </p>
       </div>
-      <div class="feature-card">
-        <img src="img/feature-ai.png" alt="Vision" class="feature-icon">
+      <div class="feature-card"> <img src="img/icon/strategic-vision.png" alt="Vision" class="feature-icon">
         <h3>Our Vision</h3>
-        <p>Transcend the possible to realize the impossible—bettering lives through robotic innovation.</p>
+        <p>Our drones will transcend the possible to realise the impossible – all the
+while bettering lives through robotic innovation.
+</p>
       </div>
-      <div class="feature-card">
-        <img src="img/feature-uav.png" alt="Mission" class="feature-icon">
+      <div class="feature-card"> <img src="img/icon/leadership.png" alt="Mission" class="feature-icon">
         <h3>Our Mission</h3>
-        <p>Deliver top-of-the-line performance every time, helping individuals and companies do more with less.</p>
+        <p>To ensure our robotics engineering delivers top of the line performance
+the first time, every time, meeting and exceeding your needs – helping
+both individuals and companies alike do more with less.</p>
       </div>
     </div>
   </section>
@@ -362,10 +315,11 @@
       margin: 0 auto;
       margin-top: 0.5em;
     }
+
     .feature-card {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+      box-shadow: 0 2px 16px rgba(30, 41, 59, 0.08);
       padding: 2.2em 1.3em 1.5em 1.3em;
       text-align: center;
       display: flex;
@@ -374,85 +328,80 @@
       min-height: 320px;
       transition: box-shadow 0.2s, transform 0.2s;
     }
+
     .feature-card:hover {
-      box-shadow: 0 6px 32px rgba(30,41,59,0.13);
+      box-shadow: 0 6px 32px rgba(30, 41, 59, 0.13);
       transform: translateY(-4px) scale(1.03);
     }
+
     .feature-icon {
       width: 64px;
       height: 64px;
       margin-bottom: 1.1em;
       object-fit: contain;
     }
+
     .feature-card h3 {
       color: #2563eb;
       font-size: 1.25em;
       margin-bottom: 0.5em;
       font-weight: 700;
     }
+
     .feature-card p {
       color: #334155;
       font-size: 1.05em;
       margin-bottom: 0;
     }
-  </style>
-
-  <!-- Main About Content -->
+  </style> <!-- Main About Content -->
   <main class="about-main-content" style="max-width:1100px; margin:2.5em auto 2em auto; padding:0 1.5em;">
-    <section class="about-section" style="background:#f8fafc; border-radius:12px; box-shadow:0 1px 6px rgba(30,41,59,0.06); padding:2em 2em 1.5em 2em; font-size:1.13em; color:#334155;">
+    <section class="about-section"
+      style="background:#f8fafc; border-radius:12px; box-shadow:0 1px 6px rgba(30,41,59,0.06); padding:2em 2em 1.5em 2em; font-size:1.13em; color:#334155;">
       <h2 style="color:#2563eb; margin-top:0; margin-bottom:0.7em; font-size:1.5em;">Who We Are</h2>
-      <p>
-        NACT was founded in 2016 and is in the productization of gamechanging technologies through the form of robotics accessories.
-</p><p>We are proficient in supplying drone accessories such as tethered drone
-systems, light cores, lightning drones, and other devices to strategically
-enhance drone capability be it for users of off-the-shelf drones or
-supplying to drone OEMs. We do also provide robotics services to
-customers if the requirement is a niche, after which we train and
-empower our customers to provide trial-proven services.
-</p><p>Our intimate knowledge of drone and robotics systems puts us at the
-forefront of a burgeoning mechanical revolution. And our track record speaks
-for itself.</p>
-      
+      <p> NACT was founded in 2016 and is in the productization of gamechanging technologies through the form of
+        robotics accessories. </p>
+      <p>We are proficient in supplying drone accessories such as tethered drone systems, light cores, lightning drones,
+        and other devices to strategically enhance drone capability be it for users of off-the-shelf drones or supplying
+        to drone OEMs. We do also provide robotics services to customers if the requirement is a niche, after which we
+        train and empower our customers to provide trial-proven services. </p>
+      <p>Our intimate knowledge of drone and robotics systems puts us at the forefront of a burgeoning mechanical
+        revolution. And our track record speaks for itself.</p>
     </section>
-  </main>
-
-  <!-- Floating AI Bot Chat Bubble -->
-  <div id="chat-bubble" class="chat-bubble" onclick="toggleChatBox()">
-    <img src="img/drone_icon.png" alt="Chat Bot"
+  </main> <!-- Floating AI Bot Chat Bubble -->
+  <div id="chat-bubble" class="chat-bubble" onclick="toggleChatBox()"> <img src="img/drone_icon.png" alt="Chat Bot"
       style="width: 40px; height: 40px; object-fit: contain; background: none; border: none; box-shadow: none;" />
-  </div>
-
-  <!-- Floating Chat -->
+  </div> <!-- Floating Chat -->
   <div id="floating-chat" class="floating-chat" style="display:none;">
-    <div class="chat-header">
-      <span>AI Drone Assistant</span>
-      <button class="close-chat" onclick="toggleChatBox()">&times;</button>
-    </div>
+    <div class="chat-header"> <span>AI Drone Assistant</span> <button class="close-chat"
+        onclick="toggleChatBox()">&times;</button> </div>
     <div id="chat-box">
-      <div id="chat-log"></div>
-      <input type="text" id="user-input" placeholder="Ask the AI bot about our drones...">
+      <div id="chat-log"></div> <input type="text" id="user-input" placeholder="Ask the AI bot about our drones...">
       <button onclick="sendMessage()">Send</button>
     </div>
-  </div>
-
-  <!-- Scripts -->
+  </div> <!-- Scripts -->
   <script src="script.js"></script>
-  <script>
-    // Hamburger menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      var hamburger = document.getElementById('hamburger-menu');
-      var navLinks = document.getElementById('navLinks');
-      hamburger.addEventListener('click', function() {
-        navLinks.classList.toggle('open');
-        var expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !expanded);
-      });
-    });
+  <script> // Hamburger menu toggle document.addEventListener('DOMContentLoaded', function() { var hamburger = document.getElementById('hamburger-menu'); var navLinks = document.getElementById('navLinks'); hamburger.addEventListener('click', function() { navLinks.classList.toggle('open'); var expanded = hamburger.getAttribute('aria-expanded') === 'true'; hamburger.setAttribute('aria-expanded', !expanded); }); }); function toggleChatBox() { var chat = document.getElementById('floating-chat'); var bubble = document.getElementById('chat-bubble'); if (chat.style.display === 'none' || chat.style.display === '') { chat.style.display = 'block'; bubble.style.display = 'none'; setTimeout(function () { document.getElementById('user-input').focus(); }, 100); } else { chat.style.display = 'none'; bubble.style.display = 'flex'; } } </script>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
+          <img src="img/logo/NACT blue .jpg" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
+        </span>
+        <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
+      </div>
 
-    function toggleChatBox() {
+      <div class="footer-right">
+  <a href="contact.html" class="cta-btn">
+    Contact Us
+  </a>
+      </div>
+    </div>
+  </footer></body>
+  <script>
+      function toggleChatBox() {
       var chat = document.getElementById('floating-chat');
       var bubble = document.getElementById('chat-bubble');
-
       if (chat.style.display === 'none' || chat.style.display === '') {
         chat.style.display = 'block';
         bubble.style.display = 'none';
@@ -465,33 +414,4 @@ for itself.</p>
       }
     }
   </script>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-left">
-        <span class="footer-logo" style="display:flex;align-items:center;gap:0.5em;font-weight:700;font-size:1.1em;">
-          <img src="img/drone_icon.png" alt="NACT Engineering Logo" style="height:28px;width:28px;vertical-align:middle;"> NACT Engineering
-        </span>
-        <span style="font-size:0.98em;opacity:0.85;">&copy; 2025 NACT Engineering. All rights reserved.</span>
-        
-      </div>
-      <div class="footer-center">
-        <span style="display:flex;align-items:center;gap:0.5em;">
-          <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 2C5.03 2 1 6.03 1 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 16.2A7.2 7.2 0 0 1 2.8 11c0-1.61.52-3.1 1.4-4.3l9.1 9.1A7.18 7.18 0 0 1 10 18.2zm5.8-2.1-9.1-9.1A7.18 7.18 0 0 1 10 3.8c3.97 0 7.2 3.23 7.2 7.2 0 1.61-.52 3.1-1.4 4.3z" fill="#2563eb"/></svg>
-          <a href="https://nactengineering.com" target="_blank" style="color:#38bdf8;font-weight:500;">www.nactengineering.com</a>
-        </span>
-        <span style="font-size:0.98em;opacity:0.85;">Singapore | info@nactengineering.com</span>
-      </div>
-      <div class="footer-right">
-        <a href="https://www.linkedin.com/company/nactengineering" class="footer-icon" target="_blank" aria-label="LinkedIn">
-          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M7.5 9.5v5h2v-5h-2zm1-1.25a1.13 1.13 0 1 1 0-2.25 1.13 1.13 0 0 1 0 2.25zm2.75 1.25v5h2v-2.5c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2V14.5h2v-2.5c0-1.54-1.26-2.8-2.8-2.8s-2.8 1.26-2.8 2.8z" fill="#fff"/></svg>
-        </a>
-        <a href="mailto:info@nactengineering.com" class="footer-icon" aria-label="Email">
-          <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#38bdf8"/><path d="M7 9l5 4 5-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="9" width="10" height="6" rx="2" fill="#fff"/></svg>
-        </a>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>  
+</html> 
